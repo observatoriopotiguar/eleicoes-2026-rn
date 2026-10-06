@@ -6,5 +6,6 @@ __pycache__/
 *.parcial
 .venv/
 
-# Scripts de uso pessoal, fora do repositório
-codigo/grafico_candidato_municipios.py
+# Gráficos estáticos (uso pessoal): o repositório só tem o código do mapa interativo
+codigo/grafico_*.py
+identidade/logo_horizontal.png

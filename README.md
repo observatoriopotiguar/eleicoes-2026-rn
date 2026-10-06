@@ -43,9 +43,7 @@ em um ou dois minutos.
 | `baixar_eleicao_rn.py` | Baixa os JSONs oficiais de resultado de todos os municípios do RN e monta `candidatos_municipio.csv`, `candidatos_zona.csv`, `resumo_municipio.csv` e `resumo_zona.csv` |
 | `baixar_locais_votacao_rn.py` | Soma a votação por seção em cada local de votação e junta nome, endereço e coordenadas: `locais_votacao.csv` e `votos_local_votacao.csv` |
 | `mapa_interativo_locais.py` | Gera o mapa interativo (HTML único). `--municipio MOSSORÓ` gera o mapa de um só município |
-| `grafico_mapas_rn.py` | Mapas estáticos (PNG) do vencedor em cada município, para Presidente e Governador. Também guarda as cores dos partidos usadas em todos os gráficos |
-| `grafico_locais_votacao.py` | Mapa estático (PNG) dos locais de votação de um município |
-| `grafico_mossoro_zonas.py` | Gráfico de Mossoró por zona eleitoral |
+| `config.py` | Pasta dos dados, cores dos partidos por cargo e download da malha municipal do IBGE |
 
 ## Fontes
 

@@ -24,7 +24,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from grafico_mapas_rn import CARGOS, DADOS, RAMPAS, carregar_malha
+from config import CARGOS, DADOS, RAMPAS, carregar_malha
 
 # Identidade do projeto. A logo é procurada em identidade/logo.(png|svg|jpg|jpeg|webp)
 # e embutida no HTML (o arquivo continua único). Pode ser sobrescrita por --logo, --autoria, --link.
