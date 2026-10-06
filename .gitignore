@@ -1,0 +1,10 @@
+# Dados baixados e gerados pelos scripts (refeitos rodando o código; ver README)
+dados/
+
+__pycache__/
+*.pyc
+*.parcial
+.venv/
+
+# Scripts de uso pessoal, fora do repositório
+codigo/grafico_candidato_municipios.py
