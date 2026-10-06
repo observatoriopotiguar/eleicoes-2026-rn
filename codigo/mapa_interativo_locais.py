@@ -31,6 +31,7 @@ from config import CARGOS, DADOS, RAMPAS, carregar_malha
 IDENTIDADE = DADOS.parent / 'identidade'
 AUTORIA = 'Larissa Brito'
 LINK_AUTORIA = 'https://www.linkedin.com/in/larissa-martins-2b93671a8/'
+APOIO = 'Opus 5.5'  # aparece como "Feito por: <autoria>, com apoio de <apoio>"
 
 # Cores dos candidatos sem cor de partido definida, distribuídas por ordem de votação
 # (os mais votados ficam com as cores mais distintas entre si). Cores já usadas por partidos
@@ -558,7 +559,7 @@ def logo_html(caminho, autoria):
     return f'<img class="logo" src="data:{tipo};base64,{conteudo}" alt="{alt}">'
 
 
-def autoria_html(autoria, link):
+def autoria_html(autoria, link, apoio):
     if not autoria:
         return ''
     texto = html_lib.escape(autoria)
@@ -566,6 +567,8 @@ def autoria_html(autoria, link):
         icone = ICONE_LINKEDIN if 'linkedin.com' in link else ''
         texto = (f'<a href="{html_lib.escape(link)}" target="_blank" rel="noopener" '
                  f'aria-label="{texto} no LinkedIn">{icone}{texto}</a>')
+    if apoio:
+        texto += f', com apoio de {html_lib.escape(apoio)}'
     return f'<p class="autoria">Feito por: {texto}</p>'
 
 
@@ -587,6 +590,7 @@ def main():
     parser.add_argument('--logo', type=Path, help='Imagem da logo (png, svg, jpg, webp)')
     parser.add_argument('--autoria', default=AUTORIA, help='Texto do "Feito por"')
     parser.add_argument('--link', default=LINK_AUTORIA, help='Link do "Feito por" (opcional)')
+    parser.add_argument('--apoio', default=APOIO, help='Texto do "com apoio de" (vazio para omitir)')
     parser.add_argument('--index', action='store_true',
                         help='Também salva uma cópia como index.html na raiz do repositório (site do GitHub Pages)')
     args = parser.parse_args()
@@ -598,7 +602,7 @@ def main():
                 .replace('__MUNICIPIO__', dados['abrangencia'])
                 .replace('__TURNO__', args.turno)
                 .replace('__LOGO__', logo_html(args.logo, args.autoria))
-                .replace('__AUTORIA__', autoria_html(args.autoria, args.link)))
+                .replace('__AUTORIA__', autoria_html(args.autoria, args.link, args.apoio)))
     nome = (unicodedata.normalize('NFKD', args.municipio.lower()).encode('ascii', 'ignore').decode().replace(' ', '_')
             if args.municipio else 'rn')
     saida = DADOS / '2026' / f'turno_{args.turno}' / f'mapa_interativo_{nome}.html'
